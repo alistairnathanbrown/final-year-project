@@ -5,11 +5,11 @@ This repository contains the source code and data for my final-year research pro
 ## Project Overview
 
 ### Objective
-This research explores the application of generative AI in assessing the **Probability of Default (PD)** for large-scale energy projects. Traditional credit risk models are well-studied in the consumer loan space but lack application in project finance. By integrating machine learning with domain-specific features like inflation, energy yield, construction cost overruns, and credit ratings, this study aims to improve risk assessment for lenders and investors.
+This research explores the application of generative AI in assessing the **Probability of Default (PD)** for large-scale energy projects. Traditional credit risk models are well-studied in the consumer loan space but lack application in project finance. By integrating machine learning with domain-specific features like inflation, wind speed, construction costs, and credit ratings, this study aims to improve risk assessment for lenders and investors.
 
 ### Data Sources
 - **Wind Farm Database:** Contains project-specific details (location, capacity, status).
-- **Macroeconomic Indicators:** Inflation, interest rates, commodity prices (collected via APIs).
+- **Macroeconomic Indicators:** Inflation, interest rates, (collected via APIs).
 - **Credit Ratings & Financials:** Firm-level financial risk factors.
 - **Construction Risk Data:** Cost overruns and delays.
 
