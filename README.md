@@ -2,10 +2,6 @@
 
 This repository contains the source code and data for my final-year research project, **"Using Generative AI to Calculate the Probability of Default for Energy Projects."** The project aims to assess the credit risk of large debt-dependent construction projects, particularly offshore wind farms, by leveraging generative AI and machine learning techniques.
 
-## Repository Structure
-
-inal-year-project/ │── data/ │ ├── raw/ # Raw datasets (wind farm data, financial data, etc.) │ ├── processed/ # Cleaned and preprocessed datasets │ ├── api_responses/ # Cached API responses for reproducibility │── src/ │ ├── data_collection/ # Scripts for data gathering and API interactions │ │ ├── fetch_wind_data.py # Fetch wind project data │ │ ├── fetch_macro_data.py # Fetch macroeconomic indicators (inflation, rates, etc.) │ │ ├── fetch_credit_data.py # Fetch credit ratings and financials │ ├── preprocessing/ # Scripts for cleaning, feature engineering, and transformation │ ├── models/ │ │ ├── train_deepseek.py # Training script for DeepSeek model │ │ ├── train_llama.py # Training script for LLaMA model │ │ ├── test_models.py # Model evaluation and testing scripts │ ├── notebooks/ # Jupyter Notebooks for exploratory analysis and validation │── results/ │ ├── model_outputs/ # Results from model training and inference │ ├── figures/ # Plots and visualizations │── requirements.txt # Python dependencies │── README.md # Project documentation │── LICENSE # License for the repository
-
 ## Project Overview
 
 ### Objective
