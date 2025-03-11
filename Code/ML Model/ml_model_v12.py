@@ -1,0 +1,160 @@
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import classification_report, roc_auc_score
+import pandas as pd
+from imblearn.over_sampling import SMOTE
+from sklearn.preprocessing import OneHotEncoder, StandardScaler
+from sklearn.impute import SimpleImputer
+import matplotlib.pyplot as plt
+import numpy as np
+from sklearn.cluster import KMeans
+from sklearn.model_selection import train_test_split
+import seaborn as sns
+
+# MODEL WITH KMEANS 7, UPDATED TO RDS5, WITH FEATURE INTERACTIONS, FEATURES PRUNED, BEST HYPER PARAMETERS V2
+
+file_path = "RDS5ML.csv"  # Update with your CSV file path
+data = pd.read_csv(file_path)
+
+# Drop unnecessary columns
+data = data.drop(columns=["Owner"])
+
+# Replace invalid or blank entries in numerical columns with NaN
+numerical_cols = [
+    "Capacity (MW)", "Start year", "Latitude", "Longitude",
+    "Estimated Project Cost (GBP)", "Annual Wind Speed (m/s)",
+    "Distance to Shore For Offshore (km)", "Ocean Depth For Offshore (m)",
+    "Inflation in Project Country (HCPI)", "Energy Inflation in Project Country (EPI)",
+    "Government Debt as Percentage of GDP", "Country Credit Rating", "Country GDP Growth Rate"
+]
+data[numerical_cols] = data[numerical_cols].replace({"?": None, "-": None, "": None}).apply(pd.to_numeric, errors="coerce")
+
+# Compute correlation matrix
+corr_matrix = data[numerical_cols].corr()
+
+# Plot heatmap
+plt.figure(figsize=(12, 8))
+sns.heatmap(corr_matrix, annot=True, fmt=".2f", cmap="coolwarm", linewidths=0.5)
+plt.title("Feature Correlation Heatmap")
+plt.show()
+
+# Create interaction terms
+data["Wind Speed × Capacity"] = data["Annual Wind Speed (m/s)"] * data["Capacity (MW)"]
+data["Debt-to-GDP × Credit Rating"] = data["Government Debt as Percentage of GDP"] * data["Country Credit Rating"]
+
+# Impute missing values in numerical columns with the median
+num_imputer = SimpleImputer(strategy="median")
+data[numerical_cols + ["Wind Speed × Capacity", "Debt-to-GDP × Credit Rating"]] = num_imputer.fit_transform(data[numerical_cols + ["Wind Speed × Capacity", "Debt-to-GDP × Credit Rating"]])
+
+# Handle missing categorical values
+data["Installation Type"] = data["Installation Type"].fillna("Unknown")
+data["Country"] = data["Country"].fillna("Unknown")
+
+# Fill N/A for onshore projects
+data["Distance to Shore For Offshore (km)"] = data["Distance to Shore For Offshore (km)"].fillna(0)
+data["Ocean Depth For Offshore (m)"] = data["Ocean Depth For Offshore (m)"].fillna(0)
+
+# Apply K-Means Clustering on Latitude & Longitude
+scaler = StandardScaler()
+coords = data[["Latitude", "Longitude"]]
+coords_scaled = scaler.fit_transform(coords)
+
+kmeans = KMeans(n_clusters=7, random_state=42, n_init=10)
+data["Location Cluster"] = kmeans.fit_predict(coords_scaled)
+
+# Drop 'Longitude' and 'Latitude' columns and 'Country'
+data = data.drop(columns=["Longitude", "Latitude", "Country"])
+
+# Define features (X) and target (y)
+X = data.drop(columns=["Cancelled"])
+y = data["Cancelled"]
+
+# Split into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, stratify=y, random_state=42
+)
+
+# Separate categorical and numerical columns
+categorical_cols = ["Installation Type", "Location Cluster"]
+numerical_cols = [
+    "Capacity (MW)", "Start year", "Estimated Project Cost (GBP)",
+    "Annual Wind Speed (m/s)", "Distance to Shore For Offshore (km)",
+    "Ocean Depth For Offshore (m)", "Inflation in Project Country (HCPI)",
+    "Energy Inflation in Project Country (EPI)", "Government Debt as Percentage of GDP",
+    "Country Credit Rating", "Country GDP Growth Rate"
+]
+
+numerical_cols += ["Wind Speed × Capacity", "Debt-to-GDP × Credit Rating"]
+
+
+# Encode categorical features
+encoder = OneHotEncoder(handle_unknown="ignore", sparse=False)
+X_train_encoded = pd.DataFrame(
+    encoder.fit_transform(X_train[categorical_cols]),
+    columns=encoder.get_feature_names_out(categorical_cols),
+    index=X_train.index
+)
+X_test_encoded = pd.DataFrame(
+    encoder.transform(X_test[categorical_cols]),
+    columns=encoder.get_feature_names_out(categorical_cols),
+    index=X_test.index
+)
+
+# Combine numerical and encoded categorical features
+X_train_preprocessed = pd.concat([X_train[numerical_cols], X_train_encoded], axis=1)
+X_test_preprocessed = pd.concat([X_test[numerical_cols], X_test_encoded], axis=1)
+
+# Scale numerical features
+scaler = StandardScaler()
+X_train_preprocessed[numerical_cols] = scaler.fit_transform(X_train_preprocessed[numerical_cols])
+X_test_preprocessed[numerical_cols] = scaler.transform(X_test_preprocessed[numerical_cols])
+
+# Apply SMOTE
+smote = SMOTE(random_state=42)
+X_train_resampled, y_train_resampled = smote.fit_resample(X_train_preprocessed, y_train)
+
+
+# Hyperparameter tuning using GridSearchCV
+best_params = {
+    'max_depth': 20,
+    'max_features': 'sqrt',
+    'min_samples_leaf': 1,
+    'min_samples_split': 2,
+    'n_estimators': 300
+}
+
+# Train the model with best hyperparameters
+model = RandomForestClassifier(random_state=42, class_weight="balanced", **best_params)
+model.fit(X_train_resampled, y_train_resampled)
+
+# Make predictions
+y_pred = model.predict(X_test_preprocessed)
+y_pred_prob = model.predict_proba(X_test_preprocessed)[:, 1]
+
+# Evaluate the model
+print("Classification Report:")
+print(classification_report(y_test, y_pred))
+
+roc_auc = roc_auc_score(y_test, y_pred_prob)
+print(f"ROC-AUC Score: {roc_auc:.4f}")
+
+feature_importances = model.feature_importances_
+feature_names = X_train_preprocessed.columns
+
+# Sort features by importance
+sorted_idx = np.argsort(feature_importances)[::-1]
+sorted_features = [feature_names[i] for i in sorted_idx]
+sorted_importances = feature_importances[sorted_idx]
+
+# Print feature importances
+print("Feature Importances:")
+for feature, importance in zip(sorted_features, sorted_importances):
+    print(f"{feature}: {importance:.4f}")
+
+# Plot feature importances
+plt.figure(figsize=(12, 8))
+plt.barh(sorted_features[:10], sorted_importances[:10], color="skyblue")
+plt.gca().invert_yaxis()
+plt.title("Top 10 Feature Importances")
+plt.xlabel("Importance Score")
+plt.ylabel("Feature")
+plt.show()

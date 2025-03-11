@@ -1,0 +1,36 @@
+Best Hyperparameters: {'max_depth': 20, 'max_features': 'sqrt', 'min_samples_leaf': 1, 'min_samples_split': 2, 'n_estimators': 300}
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.95      0.95      0.95      1061
+           1       0.71      0.70      0.71       176
+
+    accuracy                           0.92      1237
+   macro avg       0.83      0.83      0.83      1237
+weighted avg       0.92      0.92      0.92      1237
+
+ROC-AUC Score: 0.9269
+Feature Importances:
+Wind Speed × Capacity: 0.1120
+Annual Wind Speed (m/s): 0.0868
+Estimated Project Cost (GBP): 0.0846
+Debt-to-GDP × Credit Rating: 0.0808
+Government Debt as Percentage of GDP: 0.0802
+Start year: 0.0794
+Capacity (MW): 0.0745
+Inflation in Project Country (HCPI): 0.0589
+Country GDP Growth Rate: 0.0546
+Energy Inflation in Project Country (EPI): 0.0541
+Location Cluster_5: 0.0437
+Country Credit Rating: 0.0409
+Location Cluster_6: 0.0340
+Location Cluster_0: 0.0336
+Location Cluster_3: 0.0222
+Location Cluster_1: 0.0177
+Location Cluster_4: 0.0078
+Distance to Shore For Offshore (km): 0.0076
+Ocean Depth For Offshore (m): 0.0073
+Installation Type_Onshore: 0.0065
+Location Cluster_2: 0.0062
+Installation Type_Offshore hard mount: 0.0056
+Installation Type_Offshore floating: 0.0011
