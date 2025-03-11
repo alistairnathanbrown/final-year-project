@@ -1,0 +1,101 @@
+Agency,Rating,Outlook,Date
+Moody's,Ba1,Positive,Sep 14 2024
+DBRS,BBB (low),Positive,Sep 06 2024
+S&P,BBB-,Positive,Apr 19 2024
+S&P,BBB-,Stable,Oct 20 2023
+Moody's,Ba1,Stable,Sep 15 2023
+DBRS,BBB (low),Stable,Sep 08 2023
+S&P,BB+,Positive,Apr 21 2023
+Moody's,Ba3,Positive,Mar 17 2023
+S&P,BB+,Stable,Apr 22 2022
+DBRS,BB (high),Stable,Mar 18 2022
+DBRS,BB,Positive,Sep 17 2021
+S&P,BB,Positive,Apr 23 2021
+Moody's,Ba3,Stable,Nov 06 2020
+DBRS,BB (low),Stable,Apr 24 2020
+S&P,BB-,Stable,Apr 24 2020
+DBRS,BB (low),Positive,Nov 01 2019
+S&P,BB-,Positive,Oct 25 2019
+DBRS,BB (low),Stable,May 03 2019
+Moody's,B1,Stable,Mar 01 2019
+S&P,B+,Positive,Jul 20 2018
+DBRS,B (high),Positive,Jun 29 2018
+S&P,B+,Stable,Jun 25 2018
+DBRS,B,Positive,May 04 2018
+Moody's,B3,Positive,Feb 21 2018
+S&P,B,Positive,Jan 19 2018
+DBRS,CCC (high),Positive,Nov 10 2017
+S&P,B-,Positive,Jul 22 2017
+Moody's,Caa2,Positive,Jun 23 2017
+S&P,B-,Stable,Jan 22 2016
+DBRS,CCC (high),Stable,Dec 11 2015
+Moody's,Caa3,Stable,Sep 25 2015
+S&P,CCC+,Stable,Jul 21 2015
+Moody's,Caa3,Negative Watch,Jul 01 2015
+DBRS,CC,Under Review,Jul 01 2015
+S&P,CCC-,Negative,Jun 29 2015
+S&P,CCC,Negative,Jun 10 2015
+DBRS,B,Negative,May 15 2015
+DBRS,CCC (high),Negative,May 15 2015
+Moody's,Caa2,Negative,Apr 29 2015
+S&P,CCC+,Negative,Apr 15 2015
+S&P,B-,Negative Watch,Feb 06 2015
+Moody's,Caa1,Negative Watch,Feb 06 2015
+DBRS,B,Under Review,Feb 04 2015
+S&P,B,Negative Watch,Jan 28 2015
+S&P,B,Stable,Dec 12 2014
+Moody's,Caa1,Stable,Aug 01 2014
+DBRS,B,Stable,Jul 11 2014
+Moody's,Caa3,Stable,Nov 29 2013
+DBRS,CCC (high),Negative,Aug 16 2013
+S&P,B-,Stable,Dec 18 2012
+S&P,SD,N/A,Dec 05 2012
+S&P,CCC,Negative,Aug 07 2012
+S&P,CCC,Stable,May 02 2012
+Moody's,C,Negative,Mar 02 2012
+S&P,SD,N/A,Feb 27 2012
+S&P,CC,Negative,Jul 27 2011
+Moody's,Ca,Negative,Jul 25 2011
+S&P,CCC,Negative,Jun 13 2011
+Moody's,Caa1,Negative,Jun 01 2011
+Moody's,B1,Negative Watch,May 09 2011
+S&P,B,Negative Watch,May 09 2011
+S&P,BB-,Negative Watch,Mar 29 2011
+Moody's,B1,Negative,Mar 07 2011
+Moody's,Ba1,Negative Watch,Dec 16 2010
+S&P,BB+,Negative Watch,Dec 02 2010
+Moody's,Ba1,Stable,Jun 14 2010
+S&P,BB+,Negative,Apr 27 2010
+Moody's,A3,Negative Watch,Apr 22 2010
+Moody's,A3,Negative,Apr 22 2010
+S&P,BBB+,Negative,Mar 16 2010
+Moody's,A2,Negative,Dec 22 2009
+S&P,BBB+,Negative Watch,Dec 16 2009
+S&P,A-,Negative Watch,Dec 07 2009
+Moody's,A1,Negative Watch,Oct 29 2009
+Moody's,A1,Stable,Feb 25 2009
+S&P,A-,Stable,Jan 14 2009
+S&P,A,Negative Watch,Jan 09 2009
+Moody's,A1,Positive,Jan 11 2007
+S&P,A,Stable,Nov 17 2004
+S&P,A+,Negative,Sep 13 2004
+S&P,A+,Stable,Jun 10 2003
+Moody's,A1,Stable,Nov 04 2002
+S&P,A,Positive,Mar 13 2001
+S&P,A-,Positive,Nov 24 1999
+Moody's,A2,Positive,Jul 04 1999
+Moody's,Baa1,Positive,Feb 10 1999
+S&P,BBB,Positive,Nov 30 1998
+Moody's,Baa1,Negative Watch,Feb 20 1998
+S&P,BBB-,Positive,Mar 26 1997
+Moody's,Baa1,Stable,Dec 23 1996
+Moody's,Baa3,Positive Watch,Nov 04 1996
+Moody's,Baa3,Stable,May 24 1994
+S&P,BBB-,Stable,Mar 08 1994
+S&P,BBB-,Positive,Jan 13 1993
+S&P,BBB-,Stable,Aug 14 1991
+Moody's,Baa1,Stable,Jul 19 1990
+S&P,BBB-,Negative,Jul 19 1990
+S&P,BBB,Negative,Apr 05 1990
+S&P,BBB,Stable,Jun 26 1989
+S&P,BBB,N/A,Sep 09 1988
