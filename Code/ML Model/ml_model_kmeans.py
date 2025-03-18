@@ -6,7 +6,7 @@ from sklearn.impute import SimpleImputer
 import seaborn as sns
 
 # Load the data
-file_path = "RDS4ML.csv"  # Update with your CSV file path
+file_path = "RDS5ML.csv"  # Update with your CSV file path
 data = pd.read_csv(file_path)
 
 # Drop unnecessary columns and handle missing values

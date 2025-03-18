@@ -152,9 +152,12 @@ for feature, importance in zip(sorted_features, sorted_importances):
 
 # Plot feature importances
 plt.figure(figsize=(12, 8))
-plt.barh(sorted_features[:10], sorted_importances[:10], color="skyblue")
+plt.barh(sorted_features[:12], sorted_importances[:12], color="skyblue")
 plt.gca().invert_yaxis()
-plt.title("Top 10 Feature Importances")
+plt.title("Top 12 Feature Importances")
 plt.xlabel("Importance Score")
 plt.ylabel("Feature")
+
+# Save the high quality graph
+plt.savefig("exports/feature_importances.png", dpi=300, bbox_inches='tight')
 plt.show()
